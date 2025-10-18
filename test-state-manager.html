@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест системы управления состоянием</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        .btn-secondary {
+            background: #6c757d;
+        }
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+        .status {
+            margin: 10px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Тест системы управления состоянием</h1>
+        
+        <div class="test-section">
+            <h3>📊 Статус системы</h3>
+            <div id="status" class="status">Загрузка...</div>
+            <button class="btn" onclick="updateStatus()">Обновить статус</button>
+        </div>
+        
+        <div class="test-section">
+            <h3>🔄 Тестирование состояний</h3>
+            <button class="btn" onclick="createTestState()">Создать тестовое состояние</button>
+            <button class="btn" onclick="modifyState()">Изменить состояние</button>
+            <button class="btn btn-secondary" onclick="undoAction()">↶ Откат</button>
+        </div>
+        
+        <div class="test-section">
+            <h3>💾 Экспорт/Импорт</h3>
+            <button class="btn" onclick="exportState()">📤 Экспорт</button>
+            <button class="btn" onclick="importState()">📥 Импорт</button>
+            <button class="btn btn-secondary" onclick="clearHistory()">🗑️ Очистить историю</button>
+        </div>
+        
+        <div class="test-section">
+            <h3>📝 Лог событий</h3>
+            <div id="log" class="status" style="max-height: 200px; overflow-y: auto;"></div>
+            <button class="btn btn-secondary" onclick="clearLog()">Очистить лог</button>
+        </div>
+    </div>
+
+    <script>
+        // Простая система уведомлений
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Логирование
+        function log(message) {
+            const logDiv = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString();
+            logDiv.innerHTML += `[${timestamp}] ${message}<br>`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        function clearLog() {
+            document.getElementById('log').innerHTML = '';
+        }
+
+        // Обновление статуса
+        function updateStatus() {
+            if (window.getStateInfo) {
+                const info = window.getStateInfo();
+                const statusDiv = document.getElementById('status');
+                statusDiv.innerHTML = `
+                    <strong>Текущее состояние:</strong> ${info.currentState}<br>
+                    <strong>Размер истории:</strong> ${info.historySize}/${info.maxHistorySize}<br>
+                    <strong>Последний снапшот:</strong> ${info.lastSnapshot}
+                `;
+                log('Статус обновлен');
+            } else {
+                document.getElementById('status').innerHTML = 'StateManager не загружен';
+                log('ОШИБКА: StateManager не найден');
+            }
+        }
+
+        // Создание тестового состояния
+        function createTestState() {
+            if (window.stateManager) {
+                // Создаем тестовые данные
+                if (!window.testCounter) window.testCounter = 0;
+                window.testCounter++;
+                
+                // Имитируем изменение состояния
+                if (window.appState) {
+                    window.appState.testData = {
+                        counter: window.testCounter,
+                        timestamp: Date.now(),
+                        message: `Тестовое состояние #${window.testCounter}`
+                    };
+                    
+                    // Создаем снапшот
+                    window.stateManager.createSnapshot();
+                    showNotification(`Создано тестовое состояние #${window.testCounter}`, 'success');
+                    log(`Создано тестовое состояние #${window.testCounter}`);
+                    updateStatus();
+                } else {
+                    showNotification('appState не найден', 'error');
+                    log('ОШИБКА: appState не найден');
+                }
+            } else {
+                showNotification('StateManager не загружен', 'error');
+                log('ОШИБКА: StateManager не загружен');
+            }
+        }
+
+        // Изменение состояния
+        function modifyState() {
+            if (window.appState && window.appState.testData) {
+                window.appState.testData.message = `Изменено в ${new Date().toLocaleTimeString()}`;
+                window.appState.testData.modified = true;
+                
+                if (window.stateManager) {
+                    window.stateManager.createSnapshot();
+                    showNotification('Состояние изменено', 'info');
+                    log('Состояние изменено');
+                    updateStatus();
+                }
+            } else {
+                showNotification('Сначала создайте тестовое состояние', 'warning');
+                log('ПРЕДУПРЕЖДЕНИЕ: Сначала создайте тестовое состояние');
+            }
+        }
+
+        // Откат
+        function undoAction() {
+            if (window.undoLastAction) {
+                const success = window.undoLastAction();
+                if (success) {
+                    showNotification('Откат выполнен успешно', 'success');
+                    log('Откат выполнен успешно');
+                } else {
+                    showNotification('Нет состояний для отката', 'warning');
+                    log('Нет состояний для отката');
+                }
+                updateStatus();
+            } else {
+                showNotification('Функция отката не найдена', 'error');
+                log('ОШИБКА: Функция отката не найдена');
+            }
+        }
+
+        // Экспорт
+        function exportState() {
+            if (window.exportAppState) {
+                window.exportAppState();
+                showNotification('Состояние экспортировано', 'success');
+                log('Состояние экспортировано');
+            } else {
+                showNotification('Функция экспорта не найдена', 'error');
+                log('ОШИБКА: Функция экспорта не найдена');
+            }
+        }
+
+        // Импорт
+        function importState() {
+            if (window.importAppState) {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = '.json';
+                input.onchange = (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                        window.importAppState(file)
+                            .then(() => {
+                                showNotification('Состояние импортировано', 'success');
+                                log('Состояние импортировано');
+                                updateStatus();
+                            })
+                            .catch((error) => {
+                                showNotification('Ошибка импорта: ' + error.message, 'error');
+                                log('ОШИБКА импорта: ' + error.message);
+                            });
+                    }
+                };
+                input.click();
+            } else {
+                showNotification('Функция импорта не найдена', 'error');
+                log('ОШИБКА: Функция импорта не найдена');
+            }
+        }
+
+        // Очистка истории
+        function clearHistory() {
+            if (window.clearStateHistory) {
+                window.clearStateHistory();
+                showNotification('История очищена', 'success');
+                log('История очищена');
+                updateStatus();
+            } else {
+                showNotification('Функция очистки не найдена', 'error');
+                log('ОШИБКА: Функция очистки не найдена');
+            }
+        }
+
+        // Инициализация
+        window.addEventListener('load', function() {
+            log('Страница загружена');
+            
+            // Проверяем доступность StateManager
+            setTimeout(() => {
+                if (window.stateManager) {
+                    log('StateManager загружен успешно');
+                    updateStatus();
+                } else {
+                    log('ОШИБКА: StateManager не загружен');
+                    document.getElementById('status').innerHTML = 'StateManager не загружен. Убедитесь, что основное приложение загружено.';
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

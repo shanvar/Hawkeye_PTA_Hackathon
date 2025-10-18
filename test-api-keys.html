@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест API Key Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .key-mode-section {
+            margin-bottom: 20px;
+        }
+        .key-mode-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            background: #f0f0f0;
+        }
+        .btn.active {
+            background: #007bff;
+            color: white;
+        }
+        .ready-key-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .ready-key-info {
+            flex: 1;
+        }
+        .ready-key-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .ready-key-status, .ready-key-usage {
+            font-size: 12px;
+            color: #666;
+        }
+        .section {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .hidden {
+            display: none;
+        }
+        #apiStatus {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .api-status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .api-status.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .api-status.loading {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+    </style>
+</head>
+<body>
+    <h1>Тест API Key Manager</h1>
+    
+    <!-- AI Provider Selection -->
+    <div class="section">
+        <label>AI Провайдер:</label>
+        <select id="aiProviderSelect" onchange="switchProvider(this.value)">
+            <option value="gemini">Google Gemini</option>
+            <option value="openai">OpenAI</option>
+        </select>
+    </div>
+
+    <!-- Key Mode Selection -->
+    <div class="key-mode-section">
+        <label>Режим API ключей:</label>
+        <div class="key-mode-buttons">
+            <button id="readyKeyModeBtn" class="btn active" onclick="switchKeyMode('ready')">
+                🔑 Готовые ключи
+            </button>
+            <button id="customKeyModeBtn" class="btn" onclick="switchKeyMode('custom')">
+                ⚙️ Свой ключ
+            </button>
+        </div>
+    </div>
+
+    <!-- Ready Keys Section -->
+    <div id="readyKeysSection" class="section">
+        <h3>Готовые ключи</h3>
+        <div id="readyKeysContainer">
+            <!-- Ready keys will be populated here -->
+        </div>
+        <button class="btn" onclick="testCurrentKey()">
+            🧪 Тестировать выбранный ключ
+        </button>
+    </div>
+
+    <!-- Custom Keys Section -->
+    <div id="customKeysSection" class="section hidden">
+        <h3>Свой ключ</h3>
+        <div id="geminiApiSection">
+            <input type="password" id="geminiApiKeyInput" placeholder="Ваш Google AI API ключ" style="width: 100%; padding: 10px; margin-bottom: 10px;">
+            <button class="btn" onclick="saveGeminiApiKey()">Сохранить</button>
+        </div>
+        <div id="openaiApiSection" style="display: none;">
+            <input type="password" id="apiKeyInput" placeholder="sk-...ваш OpenAI API ключ" style="width: 100%; padding: 10px; margin-bottom: 10px;">
+            <button class="btn" onclick="saveApiKey()">Сохранить</button>
+        </div>
+    </div>
+
+    <!-- Status -->
+    <div id="apiStatus"></div>
+
+    <!-- Debug Info -->
+    <div class="section">
+        <h3>Отладочная информация</h3>
+        <div id="debugInfo"></div>
+    </div>
+
+    <script src="js/api-key-manager.js"></script>
+    <script>
+        // Функции для сохранения ключей
+        function saveGeminiApiKey() {
+            const key = document.getElementById('geminiApiKeyInput').value;
+            localStorage.setItem('aiIncubatorGeminiApiKey', key);
+            alert('Gemini ключ сохранен!');
+        }
+
+        function saveApiKey() {
+            const key = document.getElementById('apiKeyInput').value;
+            localStorage.setItem('aiIncubatorApiKey', key);
+            alert('OpenAI ключ сохранен!');
+        }
+
+        // Функция для отображения отладочной информации
+        function updateDebugInfo() {
+            const debugDiv = document.getElementById('debugInfo');
+            if (apiKeyManager) {
+                debugDiv.innerHTML = `
+                    <p><strong>Текущий режим:</strong> ${apiKeyManager.currentKeyMode}</p>
+                    <p><strong>Текущий провайдер:</strong> ${apiKeyManager.currentProvider}</p>
+                    <p><strong>Готовые ключи загружены:</strong> ${apiKeyManager.readyKeys ? 'Да' : 'Нет'}</p>
+                    <p><strong>Выбранный ключ:</strong> ${apiKeyManager.currentReadyKey ? apiKeyManager.currentReadyKey.name : 'Нет'}</p>
+                    <p><strong>Текущий ключ:</strong> ${apiKeyManager.getCurrentKey() ? 'Найден' : 'Не найден'}</p>
+                `;
+            } else {
+                debugDiv.innerHTML = '<p>API Key Manager не инициализирован</p>';
+            }
+        }
+
+        // Обновляем отладочную информацию каждые 2 секунды
+        setInterval(updateDebugInfo, 2000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+{
+  "projectData": {
+    "idea": "AI-powered startup incubator platform with learning and material generation",
+    "createdAt": "2025-08-15T10:00:00.000Z",
+    "updatedAt": "2025-08-15T10:00:00.000Z",
+    "status": "active"
+  },
+  "userIdeaText": "AI-powered startup incubator platform that guides founders from idea to ready MVP. The platform includes 6 interactive modules: idea validation, product formation, draft MVP creation, financial model development, market analysis, and pitch deck preparation. AI personalizes learning for the user's project, automatically creates materials (PRD, code, financial model, presentation), tracks progress, and provides recommendations.\n\nKey Features:\n- Personalized learning plan\n- Project artifact generation (PRD, MVP code, financial model, presentation)\n- Interactive tests and feedback\n- Integration with Sortabase and external APIs\n- Material export in PDF, XLSX, PPTX, ZIP\n- Progress system and certificate\n\nTarget Audience:\n- Aspiring startup founders\n- Students in entrepreneurship programs\n- Corporate innovators\n- Small teams preparing for accelerators or investors\n\nProblem: Founders spend months and significant resources preparing a startup without a structured plan and access to experts.\n\nSolution: Automated AI platform that teaches, guides, and creates key project materials step by step, reducing time from idea to ready product.",
+  "projectPassport": {
+    "basicInfo": {
+      "projectName": "AI Startup Incubator",
+      "tagline": "From Idea to MVP with AI",
+      "industry": "EdTech / Startup Tools / AI",
+      "stage": "MVP Development",
+      "teamSize": "3 founders",
+      "location": "Tashkent, Uzbekistan",
+      "website": "www.ai-incubator.com",
+      "contactEmail": "team@ai-incubator.com"
+    },
+    "problem": {
+      "description": "Entrepreneurs and startup teams lack clear structure, tools, and expert support for quickly and effectively creating a product and preparing for investors.",
+      "painPoints": [
+        "Lack of structured step-by-step plan",
+        "Long cycle from idea to MVP",
+        "High cost of hiring experts",
+        "Difficulty preparing investment presentations",
+        "Fragmented tools and resources"
+      ],
+      "targetAudience": [
+        "Aspiring entrepreneurs",
+        "Startup program students",
+        "Pre-seed and seed stage founders",
+        "Small teams and freelance teams",
+        "Corporate innovation departments"
+      ]
+    },
+    "solution": {
+      "description": "Interactive AI platform that teaches, accompanies, and generates key project materials from idea validation to ready MVP.",
+      "keyFeatures": [
+        "AI-personalized learning",
+        "PRD, MVP code, financial model, and presentation generation",
+        "Interactive tests and feedback",
+        "Artifact export in PDF, XLSX, PPTX, ZIP",
+        "Integration with Sortabase and external service APIs"
+      ],
+      "uniqueValue": "Complete startup incubation cycle in one place — from learning to ready materials, investor-ready."
+    },
+    "market": {
+      "size": "TAM: $15B (global EdTech and startup tools market), SAM: $3B (AI-driven startup tools), SOM: $100M (personalized AI platforms for startups)",
+      "competitors": [
+        "Y Combinator Startup School — education, no material generation",
+        "Notion + ChatGPT — fragmented tools",
+        "Founder Institute — lengthy offline/online programs"
+      ],
+      "competitiveAdvantage": [
+        "Full automation from idea to MVP",
+        "AI personalization and feedback",
+        "Unified platform instead of multiple tools",
+        "Built-in code and model generation"
+      ]
+    },
+    "businessModel": {
+      "revenueStreams": [
+        "Premium subscription (access to advanced features and code generation)",
+        "Corporate licenses for accelerators and universities",
+        "Commission for integration with investment platforms",
+        "Sale of additional AI credits"
+      ],
+      "costStructure": [
+        "Platform development and maintenance",
+        "AI API and cloud resources",
+        "Marketing and sales",
+        "Partnerships and integrations"
+      ],
+      "pricing": {
+        "basic": "Free — limited modules",
+        "premium": "$20/month",
+        "corporate": "by agreement"
+      }
+    },
+    "technology": {
+      "platform": "Web application",
+      "backend": "Next.js (API routes), Node.js, PostgreSQL",
+      "ai": "Claude 3.5 Sonnet / OpenAI GPT-4o for content and code generation",
+      "integrations": [
+        "Sortabase API",
+        "Google Docs/Sheets/Slides API",
+        "GitHub API",
+        "Payment systems"
+      ]
+    },
+    "team": {
+      "founders": [
+        {
+          "name": "Bahodir Foziljonov",
+          "role": "Co-founder"
+        },
+        {
+          "name": "Nodir Foziljonov",
+          "role": "Co-founder"
+        },
+        {
+          "name": "Anvar Shakhidi",
+          "role": "Co-founder"
+        }
+      ],
+      "teamSize": 3
+    },
+    "financials": {
+      "funding": {
+        "stage": "Pre-seed",
+        "amount": "$500K",
+        "investors": ["Friends & Family", "Angel investors"],
+        "useOfFunds": [
+          "Platform development (50%)",
+          "Marketing and user acquisition (30%)",
+          "Team (15%)",
+          "Operational expenses (5%)"
+        ]
+      },
+      "projections": {
+        "year1": {
+          "users": "5,000",
+          "revenue": "$120K",
+          "partners": "10 accelerators"
+        },
+        "year2": {
+          "users": "25,000",
+          "revenue": "$600K",
+          "partners": "50 accelerators"
+        },
+        "year3": {
+          "users": "100,000",
+          "revenue": "$2.4M",
+          "partners": "200 accelerators"
+        }
+      }
+    },
+    "milestones": {
+      "completed": [
+        "Market research conducted",
+        "Platform prototype created",
+        "Interviews with potential users conducted",
+        "First partner accelerators found"
+      ],
+      "inProgress": [
+        "MVP development",
+        "Beta user testing",
+        "Investor negotiations"
+      ],
+      "next3Months": [
+        "Launch MVP in Tashkent",
+        "Acquire 1,000 users",
+        "Partnership with 5 accelerators"
+      ],
+      "next6Months": [
+        "Expansion to Central Asia",
+        "Launch Premium subscription",
+        "Integration with investment platforms"
+      ]
+    },
+    "risks": {
+      "market": [
+        "High competition with established players",
+        "Changing consumer preferences",
+        "Economic instability"
+      ],
+      "technical": [
+        "Complexity of AI algorithm development",
+        "Scalability challenges",
+        "Integration issues"
+      ],
+      "regulatory": [
+        "Changes in EdTech legislation",
+        "Data privacy requirements",
+        "Licensing requirements"
+      ]
+    },
+    "metrics": {
+      "userMetrics": [
+        "Daily/Monthly Active Users (DAU/MAU)",
+        "Course completion rate",
+        "User engagement time",
+        "Retention rate (30/60/90 days)"
+      ],
+      "businessMetrics": [
+        "Monthly Recurring Revenue (MRR)",
+        "Customer Acquisition Cost (CAC)",
+        "Lifetime Value (LTV)",
+        "LTV/CAC ratio",
+        "Churn rate"
+      ],
+      "productMetrics": [
+        "Module completion rate",
+        "User satisfaction (NPS)",
+        "Conversion to Premium",
+        "Number of generated projects"
+      ]
+    }
+  }
+}

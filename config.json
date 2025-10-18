@@ -1,0 +1,270 @@
+{
+  "app": {
+    "name": "AI Startup Incubator",
+    "version": "1.0.0",
+    "organization": "Hawkeye",
+    "description": "Platform for startup incubation using AI"
+  },
+  "api": {
+    "openai": {
+      "model": "gpt-4",
+      "maxTokens": 500,
+      "temperature": 0.7
+    },
+    "gemini": {
+      "model": "gemini-pro",
+      "maxTokens": 500,
+      "temperature": 0.7
+    }
+  },
+  "modules": [
+    {
+      "id": "validation",
+      "title": "Idea Validation",
+      "description": "Validate your business idea viability and analyze market needs",
+      "duration": "2-3 days",
+      "topics": [
+        {
+          "id": "methodology",
+          "title": "Validation Methodology",
+          "description": "Learn key approaches to business idea validation",
+          "content": "validation_methodology.md",
+          "exercises": ["interview_template", "hypothesis_testing"]
+        },
+        {
+          "id": "problem_analysis",
+          "title": "Problem Analysis",
+          "description": "Define the real problem your product solves",
+          "content": "problem_analysis.md",
+          "exercises": ["problem_statement", "pain_point_mapping"]
+        },
+        {
+          "id": "target_audience",
+          "title": "Target Audience",
+          "description": "Identify and analyze your target audience",
+          "content": "target_audience.md",
+          "exercises": ["persona_creation", "market_segmentation"]
+        },
+        {
+          "id": "competitive_analysis",
+          "title": "Competitive Analysis",
+          "description": "Study competitors and find your advantage",
+          "content": "competitive_analysis.md",
+          "exercises": ["competitor_mapping", "swot_analysis"]
+        }
+      ],
+      "testQuestions": [
+        {
+          "question": "What is the main principle of business idea validation?",
+          "options": [
+            "Start product development immediately",
+            "Test hypotheses with minimal costs",
+            "Conduct large-scale market research",
+            "Find investors"
+          ],
+          "correct": 1,
+          "explanation": "Validation should test key hypotheses with minimal time and money investment"
+        },
+        {
+          "question": "What should be the priority in problem analysis?",
+          "options": [
+            "Technical complexity of the solution",
+            "Potential profit size",
+            "Problem criticality for users",
+            "Number of competitors"
+          ],
+          "correct": 2,
+          "explanation": "The problem must be truly critical and painful for users"
+        }
+      ],
+      "deliverables": [
+        "Validated_Problem_Statement.pdf",
+        "Target_Audience_Analysis.pdf",
+        "Competitive_Landscape.pdf"
+      ]
+    },
+    {
+      "id": "market_analysis",
+      "title": "Market Analysis",
+      "description": "Deep market research, competitor analysis and opportunity identification",
+      "duration": "3-4 days",
+      "topics": [
+        {
+          "id": "market_size",
+          "title": "Market Size (TAM/SAM/SOM)",
+          "description": "Calculate your market potential",
+          "content": "market_sizing.md",
+          "exercises": ["tam_sam_som_calculation", "market_research"]
+        },
+        {
+          "id": "competitor_analysis",
+          "title": "Competitor Analysis",
+          "description": "Detailed analysis of direct and indirect competitors",
+          "content": "competitor_analysis.md",
+          "exercises": ["competitor_matrix", "pricing_analysis"]
+        },
+        {
+          "id": "market_trends",
+          "title": "Market Trends",
+          "description": "Identify key trends and opportunities",
+          "content": "market_trends.md",
+          "exercises": ["trend_analysis", "opportunity_mapping"]
+        },
+        {
+          "id": "entry_barriers",
+          "title": "Entry Barriers",
+          "description": "Identify obstacles and ways to overcome them",
+          "content": "entry_barriers.md",
+          "exercises": ["barrier_analysis", "mitigation_strategies"]
+        },
+        {
+          "id": "swot_analysis",
+          "title": "SWOT Analysis",
+          "description": "Conduct comprehensive SWOT analysis",
+          "content": "swot_analysis.md",
+          "exercises": ["swot_matrix", "strategic_planning"]
+        }
+      ],
+      "testQuestions": [
+        {
+          "question": "What does TAM mean in market analysis?",
+          "options": [
+            "Total Available Market",
+            "Target Audience Marketing",
+            "Technical Analysis Method",
+            "Time to Market"
+          ],
+          "correct": 0,
+          "explanation": "TAM (Total Available Market) - the total market size for a product or service"
+        }
+      ],
+      "deliverables": [
+        "Market_Analysis_Report.pdf",
+        "Competitive_Analysis.pdf",
+        "Market_Opportunity_Assessment.pdf"
+      ]
+    },
+    {
+      "id": "business_model",
+      "title": "Business Model",
+      "description": "Create a sustainable business model and financial planning",
+      "duration": "3-4 days",
+      "topics": [
+        {
+          "id": "canvas_model",
+          "title": "Canvas Model",
+          "description": "Create a Business Model Canvas",
+          "content": "business_model_canvas.md",
+          "exercises": ["canvas_creation", "value_proposition_design"]
+        },
+        {
+          "id": "monetization",
+          "title": "Monetization Models",
+          "description": "Choose the optimal monetization model",
+          "content": "monetization_models.md",
+          "exercises": ["revenue_model_selection", "pricing_strategy"]
+        },
+        {
+          "id": "financial_planning",
+          "title": "Financial Planning",
+          "description": "Create financial plan and projections",
+          "content": "financial_planning.md",
+          "exercises": ["financial_projections", "cash_flow_analysis"]
+        }
+      ],
+      "deliverables": [
+        "Business_Model_Canvas.pdf",
+        "Financial_Plan.xlsx",
+        "Revenue_Model.pdf"
+      ]
+    },
+    {
+      "id": "mvp_development",
+      "title": "MVP Development",
+      "description": "Create a minimum viable product",
+      "duration": "5-7 days",
+      "topics": [
+        {
+          "id": "mvp_definition",
+          "title": "MVP Definition",
+          "description": "Select key features for MVP",
+          "content": "mvp_definition.md",
+          "exercises": ["feature_prioritization", "user_story_mapping"]
+        },
+        {
+          "id": "technical_requirements",
+          "title": "Technical Requirements",
+          "description": "Define technical specifications",
+          "content": "technical_spec.md",
+          "exercises": ["tech_stack_selection", "architecture_design"]
+        },
+        {
+          "id": "ui_ux_design",
+          "title": "UI/UX Design",
+          "description": "Create user interface",
+          "content": "ui_ux_design.md",
+          "exercises": ["wireframing", "prototyping"]
+        }
+      ],
+      "deliverables": [
+        "MVP_Specification.pdf",
+        "UI_UX_Mockups.zip",
+        "Technical_Architecture.pdf",
+        "Working_MVP.zip"
+      ]
+    },
+    {
+      "id": "pitch_deck",
+      "title": "Pitch Deck",
+      "description": "Create investor presentation",
+      "duration": "2-3 days",
+      "topics": [
+        {
+          "id": "presentation_structure",
+          "title": "Presentation Structure",
+          "description": "Learn effective pitch deck structure",
+          "content": "pitch_structure.md",
+          "exercises": ["slide_planning", "story_development"]
+        },
+        {
+          "id": "problem_solution",
+          "title": "Problem and Solution",
+          "description": "Clearly articulate problem and your solution",
+          "content": "problem_solution_slides.md",
+          "exercises": ["problem_visualization", "solution_demo"]
+        },
+        {
+          "id": "financial_projections",
+          "title": "Financial Projections",
+          "description": "Present financial metrics",
+          "content": "financial_slides.md",
+          "exercises": ["chart_creation", "metrics_presentation"]
+        }
+      ],
+      "deliverables": [
+        "Pitch_Deck.pptx",
+        "Executive_Summary.pdf",
+        "Financial_Model.xlsx"
+      ]
+    }
+  ],
+  "settings": {
+    "language": "en",
+    "theme": "dark",
+    "autoSave": true,
+    "progressTracking": true,
+    "notifications": true
+  },
+  "integrations": {
+    "claude": {
+      "enabled": true,
+      "model": "claude-3-sonnet",
+      "apiEndpoint": "https://api.anthropic.com/v1/messages"
+    },
+    "gemini": {
+      "enabled": true,
+      "model": "gemini-pro",
+      "apiEndpoint": "https://generativelanguage.googleapis.com/v1/models/gemini-pro"
+    }
+  }
+}

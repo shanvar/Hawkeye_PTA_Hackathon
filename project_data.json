@@ -1,0 +1,312 @@
+{
+  "projectId": "",
+  "created": "",
+  "lastModified": "",
+  "userInfo": {
+    "name": "",
+    "email": "",
+    "company": "",
+    "role": "",
+    "experience": ""
+  },
+  "projectPassport": {
+    "ideaDescription": "",
+    "problemStatement": "",
+    "solutionOverview": "",
+    "targetMarket": "",
+    "uniqueValueProposition": "",
+    "businessModel": "",
+    "revenueModel": "",
+    "competitiveAdvantage": "",
+    "teamOverview": "",
+    "fundingRequirements": "",
+    "timeline": "",
+    "risks": [],
+    "assumptions": []
+  },
+  "moduleProgress": {
+    "validation": {
+      "status": "not_started",
+      "progress": 0,
+      "completedTopics": [],
+      "testScore": 0,
+      "deliverables": [],
+      "notes": "",
+      "completedAt": ""
+    },
+    "market_analysis": {
+      "status": "not_started",
+      "progress": 0,
+      "completedTopics": [],
+      "testScore": 0,
+      "deliverables": [],
+      "notes": "",
+      "completedAt": ""
+    },
+    "business_model": {
+      "status": "not_started",
+      "progress": 0,
+      "completedTopics": [],
+      "testScore": 0,
+      "deliverables": [],
+      "notes": "",
+      "completedAt": ""
+    },
+    "mvp_development": {
+      "status": "not_started",
+      "progress": 0,
+      "completedTopics": [],
+      "testScore": 0,
+      "deliverables": [],
+      "notes": "",
+      "completedAt": ""
+    },
+    "pitch_deck": {
+      "status": "not_started",
+      "progress": 0,
+      "completedTopics": [],
+      "testScore": 0,
+      "deliverables": [],
+      "notes": "",
+      "completedAt": ""
+    }
+  },
+  "validation": {
+    "problemValidation": {
+      "interviews": [],
+      "surveys": [],
+      "painPoints": [],
+      "priorityScore": 0,
+      "validated": false
+    },
+    "solutionValidation": {
+      "prototypes": [],
+      "feedback": [],
+      "iterations": [],
+      "productMarketFit": 0,
+      "validated": false
+    },
+    "marketValidation": {
+      "marketSize": {
+        "tam": 0,
+        "sam": 0,
+        "som": 0
+      },
+      "competitors": [],
+      "marketTrends": [],
+      "validated": false
+    }
+  },
+  "marketAnalysis": {
+    "targetAudience": {
+      "primarySegment": "",
+      "secondarySegments": [],
+      "personas": [],
+      "marketSize": 0,
+      "growthRate": 0
+    },
+    "competitiveAnalysis": {
+      "directCompetitors": [],
+      "indirectCompetitors": [],
+      "competitiveMatrix": [],
+      "marketPosition": "",
+      "differentiation": []
+    },
+    "marketOpportunity": {
+      "trends": [],
+      "gaps": [],
+      "barriers": [],
+      "opportunities": [],
+      "threats": []
+    },
+    "pricingStrategy": {
+      "model": "",
+      "pricePoint": 0,
+      "competitorPricing": [],
+      "valuePerception": "",
+      "elasticity": 0
+    }
+  },
+  "businessModel": {
+    "canvas": {
+      "keyPartners": [],
+      "keyActivities": [],
+      "keyResources": [],
+      "valuePropositions": [],
+      "customerRelationships": [],
+      "channels": [],
+      "customerSegments": [],
+      "costStructure": [],
+      "revenueStreams": []
+    },
+    "financialModel": {
+      "revenueStreams": [],
+      "costStructure": {
+        "fixedCosts": [],
+        "variableCosts": [],
+        "totalCosts": 0
+      },
+      "projections": {
+        "year1": {
+          "revenue": 0,
+          "costs": 0,
+          "profit": 0,
+          "users": 0
+        },
+        "year2": {
+          "revenue": 0,
+          "costs": 0,
+          "profit": 0,
+          "users": 0
+        },
+        "year3": {
+          "revenue": 0,
+          "costs": 0,
+          "profit": 0,
+          "users": 0
+        }
+      },
+      "breakEvenPoint": 0,
+      "burnRate": 0,
+      "runway": 0
+    },
+    "scalingStrategy": {
+      "growthChannels": [],
+      "marketExpansion": [],
+      "productRoadmap": [],
+      "teamGrowth": []
+    }
+  },
+  "mvpDevelopment": {
+    "requirements": {
+      "coreFeatures": [],
+      "userStories": [],
+      "technicalSpecs": [],
+      "designSpecs": []
+    },
+    "development": {
+      "techStack": [],
+      "architecture": "",
+      "timeline": [],
+      "milestones": [],
+      "resources": []
+    },
+    "testing": {
+      "testPlan": [],
+      "userTesting": [],
+      "feedback": [],
+      "iterations": [],
+      "metrics": []
+    },
+    "launch": {
+      "launchStrategy": "",
+      "targetUsers": 0,
+      "successMetrics": [],
+      "timeline": "",
+      "budget": 0
+    }
+  },
+  "pitchDeck": {
+    "slides": [
+      {
+        "title": "Титульный слайд",
+        "content": "",
+        "notes": "",
+        "order": 1
+      },
+      {
+        "title": "Проблема",
+        "content": "",
+        "notes": "",
+        "order": 2
+      },
+      {
+        "title": "Решение",
+        "content": "",
+        "notes": "",
+        "order": 3
+      },
+      {
+        "title": "Рынок",
+        "content": "",
+        "notes": "",
+        "order": 4
+      },
+      {
+        "title": "Продукт",
+        "content": "",
+        "notes": "",
+        "order": 5
+      },
+      {
+        "title": "Тракшн",
+        "content": "",
+        "notes": "",
+        "order": 6
+      },
+      {
+        "title": "Бизнес-модель",
+        "content": "",
+        "notes": "",
+        "order": 7
+      },
+      {
+        "title": "Конкуренция",
+        "content": "",
+        "notes": "",
+        "order": 8
+      },
+      {
+        "title": "Финансы",
+        "content": "",
+        "notes": "",
+        "order": 9
+      },
+      {
+        "title": "Команда",
+        "content": "",
+        "notes": "",
+        "order": 10
+      },
+      {
+        "title": "Инвестиционный запрос",
+        "content": "",
+        "notes": "",
+        "order": 11
+      }
+    ],
+    "executiveSummary": "",
+    "appendix": [],
+    "version": "1.0",
+    "lastUpdated": ""
+  },
+  "deliverables": {
+    "documents": [],
+    "presentations": [],
+    "prototypes": [],
+    "reports": [],
+    "financialModels": []
+  },
+  "feedback": {
+    "mentorFeedback": [],
+    "peerReviews": [],
+    "expertReviews": [],
+    "userFeedback": [],
+    "iterationLog": []
+  },
+  "metrics": {
+    "timeSpent": 0,
+    "modulesCompleted": 0,
+    "testsCompleted": 0,
+    "averageScore": 0,
+    "deliverableCount": 0,
+    "lastActivity": ""
+  },
+  "settings": {
+    "language": "ru",
+    "notifications": true,
+    "autoSave": true,
+    "privacyLevel": "private",
+    "collaborators": []
+  }
+}

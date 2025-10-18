@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест Админки</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .admin-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        select {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 8px 16px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Тест Админки</h1>
+    
+    <div class="admin-section">
+        <h3>Переход к модулю</h3>
+        <select id="adminModuleSelect" onchange="handleModuleSelectChange()">
+            <option value="">Выберите модуль...</option>
+            <option value="0">Модуль 1</option>
+            <option value="1">Модуль 2</option>
+            <option value="2">Модуль 3</option>
+        </select>
+        <div id="status"></div>
+    </div>
+    
+    <script>
+        function handleModuleSelectChange() {
+            const select = document.getElementById('adminModuleSelect');
+            const status = document.getElementById('status');
+            
+            if (select.value === '') {
+                status.innerHTML = 'Выберите модуль';
+                return;
+            }
+            
+            status.innerHTML = `Выбран модуль: ${select.value}`;
+            console.log('Module selected:', select.value);
+        }
+    </script>
+</body>
+</html>

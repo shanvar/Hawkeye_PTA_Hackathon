@@ -1,0 +1,120 @@
+{
+  "version": "1.0.0",
+  "description": "All AI Incubator prompts for easy configuration",
+  "lastUpdated": "2024-12-19",
+  "prompts": {
+    "modules": {
+      "validation": {
+        "id": "validation",
+        "title": "Idea Validation",
+        "systemPrompt": "You are an expert in business idea validation. Help the user analyze their idea, identify target audience and competitive advantages."
+      },
+      "market-analysis": {
+        "id": "market-analysis",
+        "title": "Market Analysis",
+        "systemPrompt": "You are a marketing analysis expert. Help conduct deep market analysis and develop marketing strategy."
+      },
+      "business-model": {
+        "id": "business-model",
+        "title": "Business Model",
+        "systemPrompt": "You are an expert in business modeling and financial planning. Help create a sustainable business model."
+      },
+      "mvp-development": {
+        "id": "mvp-development",
+        "title": "MVP Development",
+        "systemPrompt": "You are an MVP development expert. Help define key features and create a development plan."
+      },
+      "pitch-deck": {
+        "id": "pitch-deck",
+        "title": "Pitch Deck",
+        "systemPrompt": "You are an expert in creating investor presentations. Help create a compelling pitch deck."
+      }
+    },
+    "chat": {
+      "learningPlan": {
+        "description": "Create brief plan and ask about starting",
+        "prompt": "Create a VERY brief learning plan for the topic \"${topic.title}\" in the context of the module \"${currentModule.title}\". Idea: ${ideaData}\nRequirements:\n- 4-6 aspects, ONLY titles + 1 sentence each (<=120 characters).\n- No detailed explanations or control questions.\n- At the end, ask exactly one question: \"Start learning with this plan? (Yes/No)\".\nResponse format:\n1) Numbered list of aspects.\n2) QUESTION: Start learning with this plan? (Yes/No)\nLimit: maximum 1000 characters."
+      },
+      "teachAspect": {
+        "description": "Deliver one aspect + control question",
+        "prompt": "Current aspect #${dynamicLearningState.currentAspectIndex+1}: \"${dynamicLearningState.plan[dynamicLearningState.currentAspectIndex]}\". Idea context: ${ideaData}\nProvide:\n1. Description (up to 800 characters): theory + practical application to user's idea.\n2. Control question about the text with a hint related to the project.\nFormat:\nASPECT ${dynamicLearningState.currentAspectIndex+1}: [title]\nDescription: [...up to 800 char.]\nQuestion: [...with hint]\nLimit 1200 characters."
+      },
+      "answerEvaluation": {
+        "description": "Evaluate user's answer to control question",
+        "prompt": "Evaluate the user's answer to the control question.\n\nTopic: ${dynamicLearningState.currentTopic.title}\nAspect: ${currentStep.title}\nQuestion: ${currentStep.question}\nUser's answer: ${userAnswer}\nUser's idea: ${ideaData}\nAttempt: ${dynamicLearningState.currentAspectAttempts}/${dynamicLearningState.maxAttemptsPerAspect}\n\nEvaluate the answer on a scale of 1-10, where:\n1-3: Incomplete or incorrect answer\n4-6: Partially correct answer\n7-10: Complete and correct answer\n\nIf the answer is complete (score 7-10), move to the next aspect.\nIf the answer is incomplete (score 1-6) and this is not the last attempt, ask one guiding question related to the user's idea.\nIf this is the last attempt, move to the next aspect.\n\nIMPORTANT: Limit your response to maximum 2000 characters.\n\nResponse format:\nSCORE: [number from 1 to 10]\nCOMMENT: [brief comment]\nACTION: [NEXT_ASPECT or GUIDING_QUESTION]\n[if GUIDING_QUESTION, add the question itself]"
+      }
+    },
+    "validation": {
+      "generateQuestions": {
+        "description": "Generate control questions for validation",
+        "prompt": "Based on the following business idea, create 10 control questions to test knowledge of business idea validation:\n\nIdea: ${ideaData}\n\nCreate questions that:\n1. Test understanding of validation methodology\n2. Relate to problem analysis and target audience\n3. Address competitive analysis\n4. Require detailed answers in natural language\n\nIMPORTANT: Limit your response to maximum 2000 characters. Be concise and to the point.\n\nReturn only the list of questions, each on a new line, starting with a number."
+      },
+      "evaluateAnswer": {
+        "description": "Evaluate user's answer to validation question",
+        "prompt": "Evaluate the user's answer to a business idea validation question.\n\nQuestion: ${question}\nUser's answer: ${userAnswer}\n\nAnalyze the answer based on the following criteria:\n1. Completeness of the answer (covers all aspects of the question)\n2. Accuracy of information\n3. Depth of understanding\n4. Practical applicability\n\nIMPORTANT: Limit your response to maximum 2000 characters. Be concise and to the point.\n\nReturn JSON in the following format:\n{\n  \"isCorrect\": true/false,\n  \"needsGuiding\": true/false,\n  \"score\": number from 0 to 100,\n  \"feedback\": \"brief comment\",\n  \"guidingQuestions\": [\"guiding question 1\", \"guiding question 2\"]\n}\n\nIf the answer is correct and complete, isCorrect=true, needsGuiding=false.\nIf the answer is incomplete or inaccurate, isCorrect=false, needsGuiding=true, and provide 1-2 guiding questions."
+      },
+      "generateVerdict": {
+        "description": "Generate AI verdict on idea based on answers",
+        "prompt": "Based on the business idea and user's answers to validation questions, give your verdict:\n\n**Idea:** ${ideaData}\n\n**User's answers to validation questions:**\n${userAnswers}\n\n**Total score:** ${validationState.totalScore}/100\n\nIMPORTANT: Limit your response to maximum 2000 characters. Be concise and to the point.\n\nProvide a brief but justified verdict on the viability of the idea (1-2 paragraphs)."
+      }
+    },
+    "dialog": {
+      "generateQuestions": {
+        "description": "Generate guiding questions for idea analysis",
+        "prompt": "You are a business idea analysis expert. The user described their idea: \"${dialogState.userIdea}\"\n\nCreate 5-6 guiding questions to get more detailed information about:\n1. Target audience and their problems\n2. Competitors and market\n3. Monetization model\n4. Technical aspects\n5. Resources and team\n\nIMPORTANT: Limit your response to maximum 2000 characters. Be concise and to the point.\n\nQuestions should be specific and help better understand the idea. Return only the list of questions, each on a new line, starting with a number."
+      },
+      "finalAnalysis": {
+        "description": "Create final idea analysis based on dialog",
+        "prompt": "You are a business idea analysis expert. Analyze the user's idea and create a detailed report.\n\nOriginal idea: \"${dialogState.userIdea}\"\n\nDialog with user:\n${dialogSummary}\n\nIMPORTANT: Limit your response to maximum 2000 characters. Be concise and to the point.\n\nCreate a structured analysis in the following format:\n\n## Brief Description\n[Brief description in 2-3 sentences]\n\n## Problem Analysis\n[What problems does the idea solve]\n\n## Target Audience\n[Who is the target audience]\n\n## Competitive Analysis\n[Main competitors and differences]\n\n## Monetization Model\n[How to make money]\n\n## Technical Aspects\n[What is needed for implementation]\n\n## SWOT Analysis\n**Strengths:**\n- [list]\n\n**Weaknesses:**\n- [list]\n\n**Opportunities:**\n- [list]\n\n**Threats:**\n- [list]\n\n## Recommendations\n[Specific recommendations for idea development]\n\nUse markdown formatting."
+      }
+    },
+    "api": {
+      "chatContext": {
+        "description": "Context for AI chat in modules",
+        "prompt": "${currentModule.systemPrompt}\n\nIMPORTANT: Limit your response to maximum 2000 characters. Be concise and to the point.\n\nProject context: ${appState.userIdeaText}\n\nUser question: ${userMessage}"
+      },
+      "generalContext": {
+        "description": "General context for AI without specific question",
+        "prompt": "${currentModule.systemPrompt}\n\nIMPORTANT: Limit your response to maximum 2000 characters. Be concise and to the point.\n\nUser's project context: ${appState.userIdeaText}"
+      }
+    }
+  },
+  "settings": {
+    "maxResponseLength": 2000,
+    "defaultLanguage": "en",
+    "responseFormat": "markdown",
+    "temperature": 0.7,
+    "maxTokens": 4000
+  },
+  "fallbacks": {
+    "validationQuestions": [
+      "What is business idea validation and why is it needed?",
+      "How to determine if a problem is critical enough to solve?",
+      "What methods are used to identify target audience?",
+      "How to conduct effective competitive analysis?",
+      "What is MVP and how to use it for validation?",
+      "What metrics are important when validating an idea?",
+      "How to determine market readiness to pay for a solution?",
+      "What is Customer Development and how to apply it?",
+      "How to estimate market size for your idea?",
+      "What mistakes are most commonly made when validating ideas?"
+    ],
+    "learningPlan": [
+      "Topic basics - learning fundamental concepts and principles",
+      "Practical application - how to apply knowledge to your idea",
+      "Analysis and assessment - evaluating approach effectiveness"
+    ]
+  },
+  "metadata": {
+    "totalPrompts": 12,
+    "categories": [
+      "modules",
+      "chat",
+      "validation",
+      "dialog",
+      "api"
+    ],
+    "languages": ["en"],
+    "aiProviders": ["gemini", "openai"]
+  }
+}

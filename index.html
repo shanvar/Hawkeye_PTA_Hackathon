@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AI Startup Incubator - IT Park</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Comfortaa:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="./Styles.css?v=27" id="mainCSS">
+    
+    <!-- Fallback CSS if main file doesn't load -->
+    <style id="fallbackCSS" style="display: none;">
+        /* Base styles for compatibility */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #344054;
+            background: linear-gradient(135deg, #f8f9fb 0%, #f2f4f7 100%);
+        }
+        
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .sidebar {
+            width: 350px;
+            background: white;
+            border-right: 1px solid #e4e7ec;
+            padding: 24px;
+            overflow-y: auto;
+        }
+        
+        .main-content {
+            flex: 1;
+            padding: 32px;
+            overflow-y: auto;
+        }
+        
+        .brand-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e4e7ec;
+        }
+        
+        .logo {
+            width: 40px;
+            height: 40px;
+            background: #78C257;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .logo svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+        
+        .brand-text {
+            font-family: 'Comfortaa', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: #344054;
+        }
+        
+        .welcome-screen {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .welcome-title {
+            font-size: 48px;
+            font-weight: 800;
+            color: #1d2939;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #78C257 0%, #2D5016 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .welcome-description {
+            font-size: 20px;
+            color: #667085;
+            margin-bottom: 48px;
+            line-height: 1.6;
+        }
+        
+        .idea-input {
+            width: 100%;
+            min-height: 120px;
+            padding: 20px;
+            border: 2px solid #e4e7ec;
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: inherit;
+            resize: vertical;
+            transition: all 0.2s ease;
+            margin-bottom: 16px;
+        }
+        
+        .idea-input:focus {
+            outline: none;
+            border-color: #78C257;
+            box-shadow: 0 0 0 3px rgba(120, 194, 87, 0.1);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        
+        .btn.primary {
+            background: #78C257;
+            color: white;
+        }
+        
+        .btn.primary:hover {
+            background: #6BA647;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(120, 194, 87, 0.3);
+        }
+        
+        .btn.secondary {
+            background: #f8f9fb;
+            color: #344054;
+            border: 1px solid #e4e7ec;
+        }
+        
+        .btn.secondary:hover {
+            background: #f2f4f7;
+            border-color: #d0d5dd;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        .ai-dialog-header {
+            margin-bottom: 24px;
+        }
+        
+        .ai-dialog-header h3 {
+            font-size: 24px;
+            color: #1d2939;
+            margin-bottom: 8px;
+        }
+        
+        .ai-dialog-header p {
+            color: #667085;
+        }
+        
+        .ai-dialog-messages {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #e4e7ec;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            background: white;
+        }
+        
+        .ai-dialog-message {
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            border-radius: 8px;
+        }
+        
+        .ai-dialog-message.user {
+            background: #f8f9fb;
+            margin-left: 40px;
+        }
+        
+        .ai-dialog-message.ai {
+            background: #f0fdf4;
+            margin-right: 40px;
+        }
+        
+        .final-analysis {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .final-analysis h3 {
+            font-size: 32px;
+            color: #1d2939;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        
+        .final-analysis h4 {
+            font-size: 20px;
+            color: #344054;
+            margin: 24px 0 12px 0;
+        }
+        
+        .final-analysis p {
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+        
+        .progress-section, .api-section, .admin-panel {
+            margin-bottom: 24px;
+            padding: 16px;
+            background: #f8f9fb;
+            border-radius: 8px;
+        }
+        
+        .progress-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #344054;
+        }
+        
+        .admin-btn {
+            width: 100%;
+            margin-bottom: 16px;
+        }
+        
+        .admin-content {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+        }
+        
+        .admin-section {
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e4e7ec;
+        }
+        
+        .admin-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        select, input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #e4e7ec;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        /* Dark theme */
+        [data-theme="dark"] {
+            color-scheme: dark;
+        }
+        
+        [data-theme="dark"] body {
+            background: linear-gradient(135deg, #1d2939 0%, #0b1220 100%);
+            color: #f8f9fb;
+        }
+        
+        [data-theme="dark"] .sidebar {
+            background: #1d2939;
+            border-right-color: #344054;
+        }
+        
+        [data-theme="dark"] .welcome-title {
+            color: #f8f9fb;
+        }
+        
+        [data-theme="dark"] .idea-input {
+            background: #344054;
+            border-color: #475467;
+            color: #f8f9fb;
+        }
+        
+        [data-theme="dark"] .ai-dialog-messages {
+            background: #344054;
+            border-color: #475467;
+        }
+        
+        [data-theme="dark"] .ai-dialog-message.user {
+            background: #475467;
+        }
+        
+        [data-theme="dark"] .ai-dialog-message.ai {
+            background: #2d5016;
+        }
+        
+        /* Responsive styles for all devices */
+        
+        /* Tablets and medium screens (768px - 1024px) */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 280px;
+                padding: 16px;
+            }
+            
+            .main-content {
+                padding: 24px 16px;
+            }
+            
+            .welcome-title {
+                font-size: 36px;
+            }
+            
+            .welcome-description {
+                font-size: 18px;
+            }
+            
+            .brand-text {
+                font-size: 16px;
+            }
+        }
+        
+        /* Tablets portrait orientation (768px) */
+        @media (max-width: 768px) {
+            .app-container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                min-height: auto;
+                padding: 12px;
+                border-right: none;
+                border-bottom: 1px solid #e4e7ec;
+                order: 2;
+            }
+            
+            .main-content {
+                padding: 16px;
+                order: 1;
+            }
+            
+            .welcome-title {
+                font-size: 28px;
+                margin-bottom: 12px;
+            }
+            
+            .welcome-description {
+                font-size: 16px;
+                margin-bottom: 32px;
+            }
+            
+            .brand-header {
+                margin-bottom: 16px;
+                padding-bottom: 12px;
+            }
+            
+            .progress-section, .api-section, .admin-panel {
+                margin-bottom: 12px;
+                padding: 12px;
+            }
+            
+            .admin-content {
+                padding: 12px;
+            }
+            
+            /* Compact buttons on tablets */
+            .btn {
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+            
+            .admin-btn {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+            
+            /* Simplified grid for admin sections */
+            .admin-section {
+                margin-bottom: 12px;
+                padding-bottom: 12px;
+            }
+        }
+        
+        /* Mobile devices (480px) */
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 12px 8px;
+            }
+            
+            .sidebar {
+                padding: 8px;
+            }
+            
+            .welcome-title {
+                font-size: 24px;
+                line-height: 1.2;
+            }
+            
+            .welcome-description {
+                font-size: 14px;
+                line-height: 1.5;
+            }
+            
+            .idea-input {
+                min-height: 100px;
+                padding: 12px;
+                font-size: 14px;
+            }
+            
+            .btn {
+                width: 100%;
+                padding: 12px;
+                font-size: 14px;
+                margin-bottom: 8px;
+            }
+            
+            .brand-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+            }
+            
+            .logo {
+                width: 32px;
+                height: 32px;
+            }
+            
+            .brand-text {
+                font-size: 14px;
+            }
+            
+            /* Compressed dialog for mobile */
+            .ai-dialog-messages {
+                max-height: 300px;
+                padding: 12px;
+            }
+            
+            .ai-dialog-message {
+                margin-bottom: 12px;
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+            
+            .ai-dialog-message.user {
+                margin-left: 0;
+            }
+            
+            .ai-dialog-message.ai {
+                margin-right: 0;
+            }
+            
+            /* Compact admin panels */
+            .admin-section {
+                margin-bottom: 8px;
+                padding-bottom: 8px;
+            }
+            
+            .admin-section h4 {
+                font-size: 14px;
+                margin-bottom: 8px;
+            }
+            
+            select, input {
+                padding: 8px;
+                font-size: 14px;
+                margin-bottom: 8px;
+            }
+            
+            .btn.secondary {
+                padding: 6px 12px;
+                font-size: 12px;
+                margin: 2px;
+            }
+            
+            /* Compact final analysis */
+            .final-analysis h3 {
+                font-size: 24px;
+                margin-bottom: 16px;
+            }
+            
+            .final-analysis h4 {
+                font-size: 18px;
+                margin: 16px 0 8px 0;
+            }
+            
+            .final-analysis p {
+                font-size: 14px;
+                margin-bottom: 12px;
+            }
+        }
+        
+        /* Very small screens (360px) */
+        @media (max-width: 360px) {
+            .main-content {
+                padding: 8px 4px;
+            }
+            
+            .sidebar {
+                padding: 6px;
+            }
+            
+            .welcome-title {
+                font-size: 20px;
+            }
+            
+            .welcome-description {
+                font-size: 13px;
+            }
+            
+            .idea-input {
+                min-height: 80px;
+                padding: 8px;
+                font-size: 13px;
+            }
+            
+            .btn {
+                padding: 10px;
+                font-size: 13px;
+            }
+            
+            .ai-dialog-messages {
+                max-height: 250px;
+                padding: 8px;
+            }
+            
+            .ai-dialog-message {
+                padding: 6px 8px;
+                font-size: 13px;
+                margin-bottom: 8px;
+            }
+            
+            .admin-content {
+                padding: 8px;
+            }
+            
+            .btn.secondary {
+                padding: 4px 8px;
+                font-size: 11px;
+                margin: 1px;
+            }
+        }
+        
+        /* Wide screens (1200px+) */
+        @media (min-width: 1200px) {
+            .sidebar {
+                width: 380px;
+                padding: 32px;
+            }
+            
+            .main-content {
+                padding: 48px 32px;
+            }
+            
+            .welcome-title {
+                font-size: 56px;
+            }
+            
+            .welcome-description {
+                font-size: 22px;
+                margin-bottom: 64px;
+            }
+            
+            .final-analysis {
+                max-width: 900px;
+            }
+        }
+        
+        /* Very wide screens (1440px+) */
+        @media (min-width: 1440px) {
+            .sidebar {
+                width: 420px;
+            }
+            
+            .main-content {
+                padding: 64px 48px;
+            }
+            
+            .final-analysis {
+                max-width: 1000px;
+            }
+        }
+        
+        /* Fixes for overflow and scroll */
+        .app-container {
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        
+        .sidebar, .main-content {
+            overflow-y: auto;
+            max-height: 100vh;
+        }
+        
+        /* Improved button responsiveness */
+        @media (max-width: 768px) {
+            .ready-key-item {
+                margin-bottom: 8px;
+            }
+            
+            .ready-key-info {
+                margin-bottom: 4px;
+            }
+            
+            .ready-key-name {
+                font-size: 12px;
+            }
+            
+            .ready-key-status, .ready-key-usage {
+                font-size: 11px;
+            }
+        }
+        
+        /* Responsive dark theme */
+        @media (max-width: 768px) {
+            [data-theme="dark"] .sidebar {
+                background: #1d2939;
+                border-bottom-color: #344054;
+            }
+            
+            [data-theme="dark"] .admin-content {
+                background: #344054;
+            }
+            
+            [data-theme="dark"] .progress-section, 
+            [data-theme="dark"] .api-section, 
+            [data-theme="dark"] .admin-panel {
+                background: #344054;
+            }
+        }
+        
+        /* Touch interface improvements */
+        @media (max-width: 768px) {
+            .btn {
+                min-height: 44px; /* Minimum size for touch */
+                touch-action: manipulation; /* Removes touch delay */
+            }
+            
+            .idea-input, select, input {
+                min-height: 44px;
+                touch-action: manipulation;
+            }
+        }
+        
+        /* Fixes for Safari on iOS */
+        @supports (-webkit-touch-callout: none) {
+            .app-container {
+                min-height: -webkit-fill-available;
+            }
+            
+            .sidebar, .main-content {
+                max-height: -webkit-fill-available;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="brand-header">
+                <div class="logo">
+                    <span class="logo-ai">AI</span>
+                </div>
+                <span class="brand-text">Incubator</span>
+            </div>
+
+            <!-- Admin Panel -->
+            <div class="admin-panel">
+                <button class="btn admin-btn" onclick="toggleAdminPanel()" id="adminToggleBtn">
+                    🔧 Admin Panel
+                </button>
+                
+                <div class="admin-content hidden" id="adminPanel">
+                                         <div class="admin-section">
+                         <h4>Quick Access</h4>
+                         <button class="btn secondary" onclick="unlockAllModules()">Unlock All Modules</button>
+                         <button class="btn secondary" onclick="resetProgress()">Reset Progress</button>
+                         <button class="btn secondary" onclick="completeAllModules()">Complete All Modules</button>
+                         <button class="btn secondary" onclick="clearCacheAndReset()">Clear Cache and Reset</button>
+                     </div>
+                    
+                    <div class="admin-section">
+                        <h4>Go to Module</h4>
+                        <select id="adminModuleSelect" onchange="handleModuleSelectChange()">
+                            <option value="">Select module...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="admin-section">
+                        <h4>Topic Management</h4>
+                        <button class="btn secondary" onclick="unlockAllTopics()">🔓 Unlock All Topics</button>
+                        <button class="btn secondary" onclick="resetAllTopics()">🔄 Reset All Topics</button>
+                        <button class="btn secondary" onclick="completeAllTopics()">✅ Complete All Topics</button>
+                        <div style="margin-top: var(--space-2);">
+                            <label style="font-size: var(--fs-xs); color: var(--muted); display: block; margin-bottom: var(--space-1);">Quick jump to topic:</label>
+                            <select id="adminTopicSelect" onchange="switchToTopicByAdmin()">
+                                <option value="">First select a module...</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-section">
+                        <h4>Test Data</h4>
+                        <button class="btn secondary" onclick="loadTestIdea()">Load Test Idea</button>
+                        <button class="btn secondary" onclick="loadComprehensiveTestData()">📋 Load Full Data</button>
+                        <button class="btn secondary" onclick="clearComprehensiveTestData()">Clear Test Data</button>
+                        
+                        <div style="margin-top: var(--space-2);">
+                            <label style="font-size: var(--fs-xs); color: var(--muted); display: block; margin-bottom: var(--space-1);">Load data by module:</label>
+                            <select id="moduleDataSelect" onchange="loadModuleTestData(this.value)">
+                                <option value="">Select module...</option>
+                                <option value="validation">Validation</option>
+                                <option value="market">Market Analysis</option>
+                                <option value="business">Business Model</option>
+                                <option value="mvp">MVP</option>
+                                <option value="pitch">Pitch Deck</option>
+                                <option value="passport">Project Passport</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-section">
+                        <h4>AI Models</h4>
+                        <button class="btn secondary" onclick="switchToNextGeminiModel()">Switch to Next Gemini Model</button>
+                        <button class="btn secondary" onclick="resetToDefaultModel()">Reset to Default Model</button>
+                    </div>
+                    
+                    <div class="admin-section">
+                        <h4>API Logs</h4>
+                        <button class="btn secondary" onclick="exportCurrentModuleLogs()">📥 Export Current Module Logs</button>
+                        <button class="btn secondary" onclick="exportAllModuleLogs()">📥 Export All Logs</button>
+                        <button class="btn secondary" onclick="showApiLogsStatistics()">📊 Logs Statistics</button>
+                        <button class="btn secondary" onclick="clearApiLogs()">🗑️ Clear Logs</button>
+                    </div>
+                    
+                    <div class="admin-section">
+                        <h4>Status</h4>
+                        <div id="adminStatus" class="admin-status">
+                            <!-- Admin status will be shown here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Section -->
+            <div class="progress-section">
+                <div class="progress-title">Learning Progress</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="overallProgress" style="width: 0%"></div>
+                </div>
+                
+                <div class="module-list" id="moduleList">
+                    <!-- Modules will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- API Configuration -->
+            <div class="api-section">
+                <div class="progress-title">AI Settings</div>
+                
+                <!-- AI Provider Selection -->
+                <div style="margin-bottom: var(--space-3);">
+                    <label style="font-size: var(--fs-xs); color: var(--muted); margin-bottom: var(--space-2); display: block;">Select AI provider:</label>
+                    <select id="aiProviderSelect" style="width: 100%; padding: var(--space-2); border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: var(--space-3);" onchange="switchProvider(this.value)">
+                        <option value="gemini" selected>Google Gemini</option>
+                        <option value="openai">OpenAI GPT-4</option>
+                    </select>
+                </div>
+                
+                <!-- Key Mode Selection -->
+                <div class="key-mode-section" style="margin-bottom: var(--space-3);">
+                    <label style="font-size: var(--fs-xs); color: var(--muted); margin-bottom: var(--space-2); display: block;">API Keys Mode:</label>
+                    <div class="key-mode-buttons" style="display: flex; gap: var(--space-2); margin-bottom: var(--space-2);">
+                        <button id="readyKeyModeBtn" class="btn secondary btn-sm active" onclick="switchKeyMode('ready')" style="flex: 1;">
+                            🔑 Ready Keys
+                        </button>
+                        <button id="customKeyModeBtn" class="btn secondary btn-sm" onclick="switchKeyMode('custom')" style="flex: 1;">
+                            ⚙️ Custom Key
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Gemini Model Selection -->
+                <div id="geminiModelSection" style="margin-bottom: var(--space-3);">
+                    <label style="font-size: var(--fs-xs); color: var(--muted); margin-bottom: var(--space-2); display: block;">Select Gemini model:</label>
+                                         <select id="geminiModelSelect" style="width: 100%; padding: var(--space-2); border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: var(--space-3);" onchange="switchGeminiModel()">
+                         <option value="gemini-2.0-flash-exp" selected>Gemini 2.0 Flash Experimental (TPM 4M, RPM 20)</option>
+                         <option value="gemini-2.5-pro">Gemini 2.5 Pro (TPM 250K, RPM 5)</option>
+                         <option value="gemini-2.5-flash">Gemini 2.5 Flash (TPM 250K, RPM 10)</option>
+                         <option value="gemini-2.5-flash-lite">Gemini 2.5 Flash Lite (TPM 250K, RPM 15)</option>
+                         <option value="gemini-2.0-flash">Gemini 2.0 Flash (TPM 1M, RPM 15)</option>
+                         <option value="gemini-2.0-flash-lite">Gemini 2.0 Flash Lite (TPM 1M, RPM 30)</option>
+                     </select>
+                </div>
+                
+                <!-- Ready Keys Section -->
+                <div id="readyKeysSection">
+                    <div id="readyKeysContainer" style="margin-bottom: var(--space-3);">
+                        <!-- Ready keys will be populated here dynamically -->
+                        <!-- Temporary static buttons for debugging -->
+                        <div class="ready-key-item">
+                            <div class="ready-key-info">
+                                <div class="ready-key-name">Gemini Key 1</div>
+                                <div class="ready-key-status active">✅ Active</div>
+                                <div class="ready-key-usage low">🟢 Low load</div>
+                            </div>
+                            <button class="btn secondary btn-sm" onclick="window.apiKeyManager?.selectReadyKey('gemini-1') || console.log('API Manager not ready')">
+                                Select
+                            </button>
+                        </div>
+                        <div class="ready-key-item">
+                            <div class="ready-key-info">
+                                <div class="ready-key-name">Gemini Key 2</div>
+                                <div class="ready-key-status active">✅ Active</div>
+                                <div class="ready-key-usage medium">🟡 Medium load</div>
+                            </div>
+                            <button class="btn secondary btn-sm" onclick="window.apiKeyManager?.selectReadyKey('gemini-2') || console.log('API Manager not ready')">
+                                Select
+                            </button>
+                        </div>
+                    </div>
+                    <button class="btn secondary" onclick="testCurrentKey()" style="width: 100%; margin-bottom: var(--space-3);">
+                        🧪 Test Selected Key
+                    </button>
+                </div>
+                
+                <!-- Custom Keys Section -->
+                <div id="customKeysSection" style="display: none;">
+                    <!-- Gemini API Key -->
+                    <div id="geminiApiSection">
+                        <input type="password" class="api-input" id="geminiApiKeyInput" placeholder="Your Google AI API key">
+                        <div style="display: flex; gap: var(--space-2); margin-bottom: var(--space-3);">
+                            <button class="btn primary" onclick="saveGeminiApiKey()" style="flex: 1;">Save</button>
+                            <button class="btn secondary" onclick="testGeminiApiKey()" id="testGeminiApiBtn">Test</button>
+                        </div>
+                    </div>
+                
+                    <!-- OpenAI API Key -->
+                    <div id="openaiApiSection" style="display: none;">
+                        <div style="margin-bottom: var(--space-2);">
+                            <label style="font-size: var(--fs-xs); color: var(--muted); margin-bottom: var(--space-2); display: block;">OpenAI API key:</label>
+                            <input type="password" class="api-input" id="apiKeyInput" placeholder="sk-...your OpenAI API key">
+                        </div>
+                        <div style="display: flex; gap: var(--space-2); margin-bottom: var(--space-3);">
+                            <button class="btn primary" onclick="saveApiKey()" style="flex: 1;">Save</button>
+                            <button class="btn secondary" onclick="testApiKey()" id="testApiBtn">Test</button>
+                        </div>
+                        <div style="margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--border);">
+                            <a href="https://platform.openai.com/api-keys" target="_blank" style="color: var(--brand-500); text-decoration: none; font-size: var(--fs-xs);">
+                                🔗 Get OpenAI API Key
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="apiStatus" style="font-size: var(--fs-xs); color: var(--muted);"></div>
+                
+                <!-- Debug Button -->
+                <button onclick="debugApiKeyManager()" style="margin-top: 10px; padding: 5px 10px; font-size: 12px;">
+                    🐛 Debug API Manager
+                </button>
+                
+                <!-- Quick Setup Link -->
+                <div style="margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--border);">
+                    <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color: var(--brand-500); text-decoration: none; font-size: var(--fs-xs);">
+                        🔗 Get Gemini API Key
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Welcome Screen -->
+            <div id="welcomeScreen" class="welcome-screen">
+                <h1 class="welcome-title">Welcome to AI Incubator</h1>
+                <p class="welcome-description">
+                    Turn your business idea into a successful startup with our AI platform. 
+                    Go through all stages: from idea validation to MVP creation and pitch deck.
+                </p>
+                
+                <!-- Initial Idea Input -->
+                <div id="initialIdeaSection">
+                    <textarea class="idea-input" id="ideaInput" placeholder="Describe your business idea..."></textarea>
+                    <button class="btn primary" onclick="testSubmitIdea()">Submit Idea</button>
+                </div>
+                
+                <!-- AI Dialog Section -->
+                <div id="aiDialogSection" class="hidden">
+                    <div class="ai-dialog-header">
+                        <h3>AI is analyzing your idea</h3>
+                        <p>Answer a few questions for more detailed analysis</p>
+                    </div>
+                    
+                    <div class="ai-dialog-messages" id="aiDialogMessages">
+                        <!-- AI messages will be populated here -->
+                    </div>
+                    
+                    <div class="ai-dialog-input">
+                        <textarea class="idea-input" id="aiDialogInput" placeholder="Your answer..."></textarea>
+                        <button class="btn primary" onclick="testSendResponse()">Send Answer</button>
+                    </div>
+                </div>
+                
+                                 <!-- Final Analysis Section -->
+                 <div id="finalAnalysisSection" class="hidden">
+                     <div class="final-analysis">
+                         <h3>Analysis of Your Idea</h3>
+                         <div id="finalAnalysisContent">
+                             <!-- Final analysis will be populated here -->
+                         </div>
+                         
+                         <!-- Project Passport -->
+                         <div class="project-passport-container">
+                             <h4>📋 Project Passport</h4>
+                             <div id="passportContent">
+                                 <!-- Passport content will be populated here -->
+                             </div>
+                         </div>
+                         
+                         <button class="btn primary" onclick="testStartIncubation()">Start Incubation</button>
+                     </div>
+                 </div>
+            </div>
+
+            <!-- Module Content -->
+            <div id="moduleContent" class="hidden">
+                <!-- Project Passport in Modules -->
+                <div class="project-passport-module">
+                    <button id="passportToggleBtn" class="passport-toggle-btn">
+                        <span class="passport-toggle-icon">📋</span>
+                        <span class="passport-toggle-text">Project Passport</span>
+                        <span class="passport-toggle-arrow">▼</span>
+                    </button>
+                    <div id="modulePassportContent" class="passport-content hidden">
+                        <!-- Module passport content will be populated here -->
+                    </div>
+                </div>
+                
+                <!-- Module Header -->
+                <div class="module-content">
+                    <div class="module-header">
+                        <h2 class="module-title" id="moduleTitle">Loading...</h2>
+                        <p class="module-description" id="moduleDescription">Loading module description...</p>
+                    </div>
+
+                    <!-- Topics Grid -->
+                    <div class="topics-grid" id="topicsGrid">
+                        <!-- Topics will be populated by JavaScript -->
+                    </div>
+                </div>
+
+
+                <!-- Test Section -->
+                <div class="test-section hidden" id="testSection">
+                    <h3>Knowledge Testing</h3>
+                    <div id="currentQuestion">
+                        <!-- Question will be populated by JavaScript -->
+                    </div>
+                    <div class="loading hidden" id="testLoading">Generating questions...</div>
+                    <button class="btn primary hidden" id="nextQuestionBtn" onclick="nextQuestion()">Next Question</button>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons" id="actionButtons">
+                    <!-- Dynamic Module Button - will be populated by JavaScript -->
+                    <div id="moduleButtonContainer"></div>
+                    
+                    <button class="btn secondary next-button hidden" id="nextModuleBtn" onclick="nextModule()">
+                        Go to Next Module
+                    </button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!-- Chat Popup -->
+    <div class="chat-popup-overlay" id="chatPopupOverlay">
+        <div class="chat-popup">
+            <div class="chat-popup-header">
+                <span id="chatTitle">AI Mentor Agent</span>
+                <button class="chat-close-btn" onclick="closeChatPopup()">×</button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <!-- Messages will be populated by JavaScript -->
+            </div>
+            <!-- Plan confirmation buttons (hidden by default) -->
+            <div class="chat-plan-buttons hidden" id="chatPlanButtons">
+                <button class="btn primary" id="planYesBtn">Yes</button>
+                <button class="btn secondary" id="planNoBtn">No</button>
+            </div>
+            <div class="chat-input-container" id="chatInputContainer">
+                <textarea class="chat-input" id="chatInput" placeholder="Ask a question..."></textarea>
+                <button class="btn primary" onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load JavaScript modules -->
+    <script src="js/config.js?v=28"></script>
+    <script src="js/api-key-manager.js?v=1"></script>
+    <script src="js/api-logger.js?v=1"></script>
+    <script src="js/api.js?v=28"></script>
+    <script src="js/ui.js?v=33"></script>
+    <script src="js/chat.js?v=40"></script>
+    <script src="js/dialog.js?v=29"></script>
+    
+    <!-- Module-specific files -->
+    <script src="js/validation.js?v=28"></script>
+    <script src="js/market-analysis.js?v=1"></script>
+    <script src="js/business-model.js?v=1"></script>
+    <script src="js/mvp-development.js?v=1"></script>
+    <script src="js/pitch-deck.js?v=1"></script>
+    
+    <script src="js/admin.js?v=30"></script>
+    <script src="js/app.js?v=28"></script>
+    
+    <script>
+        // Debug function
+        function debugApiKeyManager() {
+            console.log('=== API Key Manager Debug ===');
+            console.log('apiKeyManager exists:', !!apiKeyManager);
+            console.log('window.apiKeyManager exists:', !!window.apiKeyManager);
+            
+            if (apiKeyManager) {
+                console.log('Current mode:', apiKeyManager.currentKeyMode);
+                console.log('Current provider:', apiKeyManager.currentProvider);
+                console.log('Ready keys loaded:', !!apiKeyManager.readyKeys);
+                console.log('Current ready key:', apiKeyManager.currentReadyKey);
+                
+                // Force update UI
+                apiKeyManager.updateUI();
+                console.log('UI updated');
+            } else {
+                console.log('API Key Manager not initialized');
+            }
+            
+            // Check DOM elements
+            console.log('readyKeysContainer exists:', !!document.getElementById('readyKeysContainer'));
+            console.log('readyKeysSection exists:', !!document.getElementById('readyKeysSection'));
+            console.log('readyKeyModeBtn exists:', !!document.getElementById('readyKeyModeBtn'));
+        }
+        
+        // Simple key selection function
+        function selectKey(keyId) {
+            console.log('Selected key:', keyId);
+            
+            // Notify ApiKeyManager about the selection
+            if (window.apiKeyManager) {
+                window.apiKeyManager.selectReadyKey(keyId);
+            }
+            
+            // Update button states
+            const buttons = document.querySelectorAll('#readyKeysContainer .btn');
+            buttons.forEach(btn => {
+                btn.textContent = 'Select';
+                btn.classList.remove('active');
+            });
+            
+            // Mark selected button
+            const selectedButton = event.target;
+            selectedButton.textContent = 'Selected';
+            selectedButton.classList.add('active');
+            
+            // Show status
+            const statusDiv = document.getElementById('apiStatus');
+            if (statusDiv) {
+                statusDiv.innerHTML = `✅ Selected key: ${keyId}`;
+                statusDiv.className = 'api-status success';
+                
+                setTimeout(() => {
+                    statusDiv.innerHTML = '';
+                    statusDiv.className = 'api-status';
+                }, 3000);
+            }
+        }
+        
+        // Theme toggle function
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            // Apply new theme
+            html.setAttribute('data-theme', newTheme);
+            
+            // Save to localStorage
+            localStorage.setItem('aiIncubatorTheme', newTheme);
+            
+            // Add animation effect
+            const logo = document.querySelector('.theme-toggle');
+            if (logo) {
+                logo.style.transform = 'rotate(180deg)';
+                setTimeout(() => {
+                    logo.style.transform = 'rotate(0deg)';
+                }, 300);
+            }
+            
+            // Show theme change notification
+            showThemeNotification(newTheme);
+        }
+        
+        // Show theme change notification
+        function showThemeNotification(theme) {
+            const notification = document.createElement('div');
+            notification.className = 'theme-notification';
+            notification.innerHTML = `
+                <div class="theme-notification-content">
+                    <span>${theme === 'dark' ? '🌙' : '☀️'} Theme changed to ${theme === 'dark' ? 'dark' : 'light'}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 2 seconds
+            setTimeout(() => {
+                notification.remove();
+            }, 2000);
+        }
+        
+        // Initialize theme on page load - Default to dark
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('aiIncubatorTheme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            // Save default if not set
+            if (!localStorage.getItem('aiIncubatorTheme')) {
+                localStorage.setItem('aiIncubatorTheme', 'dark');
+            }
+        }
+        
+        // Call theme initialization when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initializeTheme);
+        
+        // CSS Loading Check
+        function checkCSSLoaded() {
+            // Checking if main CSS file loaded
+            const mainCSS = document.getElementById('mainCSS');
+            const fallbackCSS = document.getElementById('fallbackCSS');
+            
+            if (mainCSS) {
+                // Checking if styles were applied
+                const testElement = document.createElement('div');
+                testElement.className = 'app-container';
+                testElement.style.visibility = 'hidden';
+                document.body.appendChild(testElement);
+                
+                const computedStyle = window.getComputedStyle(testElement);
+                const hasStyles = computedStyle.display === 'flex';
+                
+                document.body.removeChild(testElement);
+                
+                if (!hasStyles) {
+                    console.log('Main CSS not loaded, activating fallback styles');
+                    // Activating fallback styles
+                    fallbackCSS.style.display = 'block';
+                    // Showing notification
+                    showCSSFallbackNotification();
+                } else {
+                    console.log('Main CSS loaded successfully');
+                }
+            }
+        }
+        
+        // Fallback CSS notification
+        function showCSSFallbackNotification() {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 10px;
+                right: 10px;
+                background: #f79009;
+                color: white;
+                padding: 12px 16px;
+                border-radius: 8px;
+                font-size: 14px;
+                z-index: 10000;
+                max-width: 300px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            `;
+            notification.innerHTML = '⚠️ Basic styles activated. For full design, ensure Styles.css file is accessible.';
+            
+            document.body.appendChild(notification);
+            
+            // Removing notification after 5 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 5000);
+        }
+        
+        // Checking CSS after page load
+        window.addEventListener('load', checkCSSLoaded);
+        
+        // Global function for closing chat popup
+        function closeChatPopup() {
+            const chatPopupOverlay = document.getElementById('chatPopupOverlay');
+            if (chatPopupOverlay) {
+                chatPopupOverlay.classList.remove('show');
+            }
+        }
+        
+        // Simple test submit function
+        function testSubmitIdea() {
+            console.log('testSubmitIdea() called');
+            
+            const ideaText = document.getElementById('ideaInput').value.trim();
+            console.log('Idea text:', ideaText);
+            
+            if (!ideaText) {
+                alert('Please describe your idea');
+                return;
+            }
+            
+            // Hide initial section and show dialog
+            const initialSection = document.getElementById('initialIdeaSection');
+            const dialogSection = document.getElementById('aiDialogSection');
+            
+            if (initialSection && dialogSection) {
+                initialSection.classList.add('hidden');
+                dialogSection.classList.remove('hidden');
+                
+                // Add demo message
+                const messagesContainer = document.getElementById('aiDialogMessages');
+                if (messagesContainer) {
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = 'ai-dialog-message user';
+                    messageDiv.textContent = ideaText;
+                    messagesContainer.appendChild(messageDiv);
+                    
+                    // Add AI response
+                    const aiDiv = document.createElement('div');
+                    aiDiv.className = 'ai-dialog-message ai';
+                    aiDiv.innerHTML = '<strong>🤖 DEMO MODE:</strong> Who is your target audience and what is their main problem?';
+                    messagesContainer.appendChild(aiDiv);
+                }
+                
+                console.log('Dialog started successfully');
+            } else {
+                console.error('Could not find dialog elements');
+            }
+        }
+        
+        // Simple dialog response function
+        function testSendResponse() {
+            console.log('testSendResponse() called');
+            
+            const responseText = document.getElementById('aiDialogInput').value.trim();
+            console.log('Response text:', responseText);
+            
+            if (!responseText) {
+                alert('Please enter your answer');
+                return;
+            }
+            
+            // Add user response to dialog
+            const messagesContainer = document.getElementById('aiDialogMessages');
+            if (messagesContainer) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'ai-dialog-message user';
+                messageDiv.textContent = responseText;
+                messagesContainer.appendChild(messageDiv);
+                
+                // Clear input
+                document.getElementById('aiDialogInput').value = '';
+                
+                // Add demo final analysis after 3 responses
+                const userMessages = messagesContainer.querySelectorAll('.ai-dialog-message.user');
+                if (userMessages.length >= 3) {
+                    // Show final analysis
+                    setTimeout(() => {
+                        document.getElementById('aiDialogSection').classList.add('hidden');
+                        document.getElementById('finalAnalysisSection').classList.remove('hidden');
+                        
+                        const analysisContent = document.getElementById('finalAnalysisContent');
+                        if (analysisContent) {
+                            analysisContent.innerHTML = `
+                                <h4>🤖 DEMO ANALYSIS</h4>
+                                <p><strong>Your idea:</strong> has been analyzed and is ready for development!</p>
+                                <p><strong>Recommendations:</strong> Continue development by setting up a real API key for full analysis.</p>
+                            `;
+                        }
+                    }, 1000);
+                } else {
+                    // Add next demo question
+                    const questions = [
+                        "What alternative solutions already exist in the market?",
+                        "How do you plan to monetize your product?",
+                        "What resources do you need to implement the idea?"
+                    ];
+                    
+                    setTimeout(() => {
+                        const aiDiv = document.createElement('div');
+                        aiDiv.className = 'ai-dialog-message ai';
+                        aiDiv.innerHTML = `<strong>🤖 DEMO MODE:</strong> ${questions[userMessages.length - 1]}`;
+                        messagesContainer.appendChild(aiDiv);
+                        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                    }, 500);
+                }
+                
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+        }
+        
+        // Simple start incubation function
+        function testStartIncubation() {
+            console.log('testStartIncubation() called');
+            
+            // Hide welcome screen and show module content
+            const welcomeScreen = document.getElementById('welcomeScreen');
+            const moduleContent = document.getElementById('moduleContent');
+            
+            if (welcomeScreen && moduleContent) {
+                welcomeScreen.classList.add('hidden');
+                moduleContent.classList.remove('hidden');
+                
+                // Set demo module content
+                const moduleTitle = document.getElementById('moduleTitle');
+                const moduleDescription = document.getElementById('moduleDescription');
+                
+                if (moduleTitle) moduleTitle.textContent = '🤖 DEMO: Idea Validation';
+                if (moduleDescription) moduleDescription.textContent = 'Demo mode is active. Configure API key for full functionality.';
+                
+                console.log('Incubation started successfully');
+            } else {
+                console.error('Could not find module elements');
+            }
+        }
+        
+        // No need for global function anymore - using direct event listeners
+    </script>
+</body>
+</html>
