@@ -1,4 +1,4 @@
-# AI Startup Incubator - IT Park Uzbekistan
+# AI Startup Incubator
 
 A comprehensive web platform for incubating startups using artificial intelligence.
 
@@ -9,7 +9,7 @@ A comprehensive web platform for incubating startups using artificial intelligen
 - **Progress Tracking**: Track learning progress and module completion
 - **Knowledge Testing**: Automated test generation for each module
 - **Project Passport**: Structured storage of startup data
-- **Corporate Design**: Styled in IT Park Uzbekistan corporate colors
+- **Corporate Design**: Modern Dark Theme
 - **Responsive**: Full mobile device support
 - **Local Storage**: Data saved locally in browser
 - **Modern Dark Theme**: Beautiful dark interface by default
@@ -182,7 +182,7 @@ In `Styles.css` change CSS variables:
 - **Frontend**: HTML5, CSS3, Vanilla JavaScript
 - **AI Integration**: OpenAI GPT-4 / Google Gemini API
 - **Storage**: LocalStorage for progress saving
-- **Styling**: Custom CSS with IT Park corporate colors
+- **Styling**: Custom CSS with dark colors
 
 ### Browser Support
 - Chrome 80+
@@ -294,7 +294,7 @@ Developed by Hawkeye team
 
 - **Backend**: AI consultant based on GPT-4 / Gemini
 - **Frontend**: Responsive web interface
-- **Design**: IT Park corporate style
+- **Design**: Modern dark style
 - **Content**: Expert startup materials
 
 ---
@@ -302,3 +302,4 @@ Developed by Hawkeye team
 **Version**: 2.0
 **Last Updated**: 2024
 **Status**: Production Ready
+
